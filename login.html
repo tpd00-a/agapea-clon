@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Registro - Librería Agapea</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+<header id="header">
+  <div class="menusup">
+    <div class="container-fluid">
+      <ul class="nav-user">
+        <li><a href="#"><i class="fa-solid fa-phone"></i><span>Contacto</span></a></li>
+        <li><a href="login.html"><i class="fa-solid fa-user"></i><span id="header-user-name">Login</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="navsup">
+    <div class="container-fluid">
+      <div class="nav-cabecera">
+        <div class="brand">
+          <a href="index.html">
+            <img src="https://www.agapea.com/newimg/agapea-logo.svg" alt="Agapea" width="180" height="34"
+                 onerror="this.outerHTML='<span style=\'font-size:20px;font-weight:bold;color:#000b5b;\'>📚 Agapea</span>'">
+          </a>
+        </div>
+        <div class="buscador-wrap">
+          <input type="search" id="header-search" placeholder="Buscar por libro, autor, ISBN...">
+          <button onclick="buscarDesdeCabecera()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <a href="cart.html" class="header-carrito">
+          <i class="fa-solid fa-cart-shopping ico-cart"></i>
+          <span class="badge-count" id="cart-badge">0</span>
+          <span class="precio-total" id="cart-header-total">0,00 €</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid" style="padding-top:20px">
+  <div class="breadcrumb">
+    <a href="index.html">Librería Agapea</a>
+    <span>&rsaquo;</span>
+    <span>Mi cuenta</span>
+  </div>
+
+  <div class="auth-container">
+
+    <!-- Panel Login / Registro -->
+    <div class="auth-panel">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login-btn" onclick="switchAuthTab('login')">
+          <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
+        </button>
+        <button class="auth-tab" id="tab-register-btn" onclick="switchAuthTab('register')">
+          <i class="fa-solid fa-user-plus"></i> Crear cuenta
+        </button>
+      </div>
+
+      <!-- Formulario LOGIN -->
+      <div class="auth-form" id="login-form-wrap">
+        <h2>Iniciar sesión</h2>
+        <p class="auth-subtitle">Accede a tu cuenta para ver tus pedidos, favoritos y más.</p>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="login-email">Correo electrónico *</label>
+            <input type="email" id="login-email" name="email" placeholder="tu@email.com" required>
+            <span class="field-error" id="login-email-err"></span>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Contraseña *</label>
+            <div class="input-pass-wrap">
+              <input type="password" id="login-password" name="password" placeholder="Tu contraseña" required minlength="6">
+              <button type="button" class="toggle-pass" onclick="togglePass('login-password', this)">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+            <span class="field-error" id="login-pass-err"></span>
+          </div>
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="remember-me"> Recordarme
+            </label>
+            <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+          </div>
+          <div class="form-error" id="login-form-error" style="display:none"></div>
+          <button type="submit" class="btn-auth-submit" id="login-submit-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> Entrar
+          </button>
+        </form>
+
+        <div class="auth-divider"><span>o accede con</span></div>
+
+        <div class="social-login">
+          <button class="btn-social google" onclick="loginSocial('google')">
+            <i class="fa-brands fa-google"></i> Google
+          </button>
+          <button class="btn-social facebook" onclick="loginSocial('facebook')">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </button>
+        </div>
+      </div>
+
+      <!-- Formulario REGISTRO -->
+      <div class="auth-form" id="register-form-wrap" style="display:none">
+        <h2>Crear cuenta</h2>
+        <p class="auth-subtitle">Regístrate gratis y disfruta de todos los beneficios de Agapea.</p>
+
+        <form id="register-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-name">Nombre *</label>
+              <input type="text" id="reg-name" name="name" placeholder="Tu nombre" required minlength="2">
+              <span class="field-error" id="reg-name-err"></span>
+            </div>
+            <div class="form-group">
+              <label for="reg-surname">Apellidos *</label>
+              <input type="text" id="reg-surname" name="surname" placeholder="Tus apellidos" required minlength="2">
+              <span class="field-error" id="reg-surname-err"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Correo electrónico *</label>
+            <input type="email" id="reg-email" name="email" placeholder="tu@email.com" required>
+            <span class="field-error" id="reg-email-err"></span>
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Contraseña *</label>
+            <div class="input-pass-wrap">
+              <input type="password" id="reg-password" name="password" placeholder="Mínimo 6 caracteres" required minlength="6">
+              <button type="button" class="toggle-pass" onclick="togglePass('reg-password', this)">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+            <span class="field-error" id="reg-pass-err"></span>
+            <div class="pass-strength" id="pass-strength"></div>
+          </div>
+          <div class="form-group">
+            <label for="reg-password2">Repetir contraseña *</label>
+            <div class="input-pass-wrap">
+              <input type="password" id="reg-password2" name="password2" placeholder="Repite la contraseña" required>
+              <button type="button" class="toggle-pass" onclick="togglePass('reg-password2', this)">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+            <span class="field-error" id="reg-pass2-err"></span>
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="reg-terms" required>
+              Acepto los <a href="#" target="_blank">términos y condiciones</a> y la
+              <a href="#" target="_blank">política de privacidad</a> *
+            </label>
+            <span class="field-error" id="reg-terms-err"></span>
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="reg-newsletter">
+              Quiero recibir novedades y ofertas por email
+            </label>
+          </div>
+          <div class="form-error" id="reg-form-error" style="display:none"></div>
+          <button type="submit" class="btn-auth-submit">
+            <i class="fa-solid fa-user-plus"></i> Crear cuenta gratis
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Panel de ventajas -->
+    <div class="auth-benefits">
+      <h3>Ventajas de ser cliente Agapea</h3>
+      <ul class="benefits-list">
+        <li>
+          <i class="fa-solid fa-check-circle" style="color:#27ae60"></i>
+          <div>
+            <strong>Historial de pedidos</strong>
+            <span>Consulta tus compras anteriores en cualquier momento</span>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-check-circle" style="color:#27ae60"></i>
+          <div>
+            <strong>Lista de deseos</strong>
+            <span>Guarda los libros que quieres comprar más adelante</span>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-check-circle" style="color:#27ae60"></i>
+          <div>
+            <strong>Descuentos exclusivos</strong>
+            <span>Accede a ofertas especiales para clientes registrados</span>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-check-circle" style="color:#27ae60"></i>
+          <div>
+            <strong>Proceso de compra más rápido</strong>
+            <span>Tus datos guardados para compras futuras</span>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-check-circle" style="color:#27ae60"></i>
+          <div>
+            <strong>Valoraciones verificadas</strong>
+            <span>Comparte tu opinión sobre los libros que has leído</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <p>© Agapea Factory S.A. 2002 - 2026. Reservados todos los derechos</p>
+        <ul>
+          <li><a href="#">Aviso Legal</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<div id="toast-container"></div>
+</body>
+</html>

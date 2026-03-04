@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Librería Agapea. Comprar libros en la librería online Agapea. Libros Urgentes</title>
+  <meta name="description" content="Librería online Agapea.com comprar libros con descuento y envío gratis en modalidad urgente en miles de libros">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header id="header">
+
+  <!-- Barra superior oscura -->
+  <div class="menusup">
+    <div class="container-fluid">
+      <ul class="nav-user">
+        <li>
+          <a href="#" id="contacto-link">
+            <i class="fa-solid fa-phone"></i>
+            <span>Contacto</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <i class="fa-solid fa-user"></i>
+            <span id="header-user-name">Login</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Barra principal -->
+  <div id="navsup">
+    <div class="container-fluid">
+      <div class="nav-cabecera">
+
+        <!-- Logo -->
+        <div class="brand">
+          <a href="index.html" title="Librería Online Agapea. Comprar Libros Urgentes">
+            <img src="https://www.agapea.com/newimg/agapea-logo.svg"
+                 alt="Librería Online Agapea" width="180" height="34"
+                 onerror="this.outerHTML='<span style=\'font-size:20px;font-weight:bold;color:#000b5b;\'>📚 Agapea</span>'">
+          </a>
+        </div>
+
+        <!-- Buscador -->
+        <div class="buscador-wrap">
+          <input type="search" id="header-search" placeholder="Buscar por libro, autor, ISBN...">
+          <button onclick="buscarDesdeCabecera()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+
+        <!-- Carrito -->
+        <a href="cart.html" class="header-carrito">
+          <i class="fa-solid fa-cart-shopping ico-cart"></i>
+          <span class="badge-count" id="cart-badge">0</span>
+          <span class="precio-total" id="cart-header-total">0,00 €</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Promo Strip -->
+<div class="promo-strip">
+  <span>🚚 Envío GRATIS en pedidos superiores a 19€</span>
+  <span>|</span>
+  <span>📦 Entrega en 24/48h</span>
+  <span>|</span>
+  <span>⭐ +8 millones de títulos disponibles</span>
+</div>
+
+<!-- ========== CONTENIDO PRINCIPAL ========== -->
+<div class="container-fluid">
+  <div class="row-fluid" id="cnt-principal">
+
+    <!-- ===== SIDEBAR (span3) ===== -->
+    <div class="span3" id="cnt-menu">
+      <div class="sidebar-nav">
+
+        <!-- Categorías -->
+        <div class="side-categorias">
+          <h3 class="margenes">Categorías</h3>
+          <ul class="cat-list nav nav-list" id="sidebar-cats">
+            <li><a href="#" data-cat="all" class="active">Todos los libros</a></li>
+            <li><a href="#" data-cat="Literatura">Literatura</a></li>
+            <li><a href="#" data-cat="Ciencias Humanas">Ciencias Humanas</a></li>
+            <li><a href="#" data-cat="Economía">Economía</a></li>
+            <li><a href="#" data-cat="Ciencias Técnicas">Ciencias Técnicas</a></li>
+            <li><a href="#" data-cat="Cómic y Manga">Cómic y Manga</a></li>
+            <li><a href="#" data-cat="Libros de Texto">Libros de Texto</a></li>
+            <li><a href="#" data-cat="Libros Infantiles">Libros Infantiles</a></li>
+            <li><a href="#" data-cat="Tiempo Libre">Tiempo Libre</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div class="side-attclient margenes">
+          <div class="contacto-att-client">
+            <div class="phone-num">
+              <div><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <div class="label">Atención al cliente</div>
+                <div class="num">915 757 000</div>
+              </div>
+            </div>
+            <div class="schedule">De Lunes a Viernes<br>De 9:00h a 19:00h</div>
+          </div>
+        </div>
+
+        <!-- Destacados -->
+        <div class="side-destacados margenes">
+          <a class="card-dest" href="#">
+            <div class="titulo-dest">
+              <h4>Recomendador de libros</h4>
+              <p>Dinos qué te gusta y te recomendamos qué leer</p>
+            </div>
+          </a>
+          <a class="card-dest" href="#">
+            <div class="titulo-dest">
+              <h4>Los libros más deseados</h4>
+              <p>Compra online los libros más deseados por nuestros clientes</p>
+            </div>
+          </a>
+          <a class="card-dest" href="#">
+            <div class="titulo-dest">
+              <h4>Novedades editoriales</h4>
+              <p>Todas las novedades editoriales de este mes</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <!-- fin sidebar -->
+
+    <!-- ===== MAIN CONTENT (span9) ===== -->
+    <div class="span9" id="cnt-contenido">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Librería Agapea</a>
+        <span>&rsaquo;</span>
+        <span id="breadcrumb-section">Inicio</span>
+      </div>
+
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-text">
+          <h1>Libros urgentes. Sólo libros.</h1>
+          <p>Compra libros online con envío gratis y entrega en 24/48 horas.<br>
+             Más de 8 millones de títulos disponibles.</p>
+          <a href="#catalogo" class="btn btn-red">Ver catálogo completo</a>
+        </div>
+        <div class="hero-img">
+          <img src="https://covers.openlibrary.org/b/id/8231856-L.jpg" alt="Libro destacado"
+               onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <!-- Features Strip -->
+      <div class="features-strip">
+        <div class="feature-item">
+          <i class="fa-solid fa-truck-fast" style="color:#00679f;font-size:22px"></i>
+          <div class="feat-text">
+            <div class="title">Envío GRATIS</div>
+            <div class="desc">En pedidos &gt; 19€</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-rotate-left" style="color:#00679f;font-size:22px"></i>
+          <div class="feat-text">
+            <div class="title">Devolución fácil</div>
+            <div class="desc">Hasta 30 días</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-shield-halved" style="color:#00679f;font-size:22px"></i>
+          <div class="feat-text">
+            <div class="title">Pago seguro</div>
+            <div class="desc">100% protegido</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-headset" style="color:#00679f;font-size:22px"></i>
+          <div class="feat-text">
+            <div class="title">Atención cliente</div>
+            <div class="desc">L-V 9:00-19:00h</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de búsqueda y filtros -->
+      <div class="filter-bar" id="catalogo">
+        <i class="fa-solid fa-magnifying-glass" style="color:#888"></i>
+        <input type="text" id="search-input" placeholder="Buscar por título, autor, ISBN..."
+               style="flex:1; min-width:150px;">
+        <select id="category-filter" style="min-width:130px;">
+          <option value="">Todas las categorías</option>
+          <option value="Literatura">Literatura</option>
+          <option value="Ciencias Humanas">Ciencias Humanas</option>
+          <option value="Economía">Economía</option>
+          <option value="Ciencias Técnicas">Ciencias Técnicas</option>
+          <option value="Cómic y Manga">Cómic y Manga</option>
+          <option value="Libros de Texto">Libros de Texto</option>
+          <option value="Libros Infantiles">Libros Infantiles</option>
+          <option value="Tiempo Libre">Tiempo Libre</option>
+        </select>
+        <select id="sort-select" style="min-width:140px;">
+          <option value="relevance">Relevancia</option>
+          <option value="price-asc">Precio: menor a mayor</option>
+          <option value="price-desc">Precio: mayor a menor</option>
+          <option value="rating">Mejor valorados</option>
+          <option value="date">Más recientes</option>
+          <option value="title">Título A-Z</option>
+        </select>
+      </div>
+
+      <!-- Contador de resultados -->
+      <div class="results-count" id="results-count"></div>
+
+      <!-- Loading state -->
+      <div class="loading-state" id="loading-state">
+        <div class="loading-spinner"></div>
+        Cargando libros...
+      </div>
+
+      <!-- Grid de libros -->
+      <div class="bookcase-grid" id="games-container" style="display:none"></div>
+
+      <!-- Paginación -->
+      <div class="pagination" id="pagination"></div>
+
+    </div>
+    <!-- fin main content -->
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <p>© Agapea Factory S.A. 2002 - 2026. Reservados todos los derechos</p>
+        <ul>
+          <li><a href="#">Aviso Legal</a></li>
+          <li><a href="#">Condiciones de contratación</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+          <li><a href="#">Librerías</a></li>
+        </ul>
+      </div>
+      <div class="footer-logos">
+        <img src="https://www.agapea.com/newimg/logo_cipi_esc.jpg" alt="Premio Empresa Responsable"
+             onerror="this.style.display='none'">
+        <img src="https://www.agapea.com/newimg/logo-ministerio-dglfl.jpg" alt="Ministerio de Cultura"
+             onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+</body>
+</html>
