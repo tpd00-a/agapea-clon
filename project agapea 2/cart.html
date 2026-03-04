@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compra - Librería Agapea</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+<header id="header">
+  <div class="menusup">
+    <div class="container-fluid">
+      <ul class="nav-user">
+        <li><a href="#"><i class="fa-solid fa-phone"></i><span>Contacto</span></a></li>
+        <li><a href="login.html"><i class="fa-solid fa-user"></i><span id="header-user-name">Login</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="navsup">
+    <div class="container-fluid">
+      <div class="nav-cabecera">
+        <div class="brand">
+          <a href="index.html">
+            <img src="https://www.agapea.com/newimg/agapea-logo.svg" alt="Agapea" width="180" height="34"
+                 onerror="this.outerHTML='<span style=\'font-size:20px;font-weight:bold;color:#000b5b;\'>📚 Agapea</span>'">
+          </a>
+        </div>
+        <div class="buscador-wrap">
+          <input type="search" id="header-search" placeholder="Buscar por libro, autor, ISBN...">
+          <button onclick="buscarDesdeCabecera()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <a href="cart.html" class="header-carrito">
+          <i class="fa-solid fa-cart-shopping ico-cart"></i>
+          <span class="badge-count" id="cart-badge">0</span>
+          <span class="precio-total" id="cart-header-total">0,00 €</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid" style="padding-top:20px">
+  <div class="breadcrumb">
+    <a href="index.html">Librería Agapea</a>
+    <span>&rsaquo;</span>
+    <span>Carrito de compra</span>
+  </div>
+
+  <h2 style="font-size:20px; color:#2c3e50; margin-bottom:20px">
+    <i class="fa-solid fa-cart-shopping" style="color:#00679f"></i>
+    Tu carrito de compra
+  </h2>
+
+  <!-- Carrito vacío -->
+  <div id="empty-cart" class="empty-cart" style="display:none">
+    <i class="fa-solid fa-cart-shopping" style="font-size:60px; color:#ddd; margin-bottom:20px"></i>
+    <p>Tu carrito está vacío</p>
+    <a href="index.html" class="btn-primary">Ver catálogo de libros</a>
+  </div>
+
+  <!-- Layout carrito -->
+  <div id="cart-content" class="cart-layout" style="display:none">
+    <!-- Lista de items -->
+    <div class="cart-items-list" id="cart-items-list">
+      <!-- Items se renderizan aquí -->
+    </div>
+
+    <!-- Resumen / Checkout -->
+    <div class="cart-summary-box">
+      <h3>Resumen del pedido</h3>
+
+      <div class="summary-row">
+        <span>Subtotal (<span id="summary-qty">0</span> artículos)</span>
+        <span id="summary-subtotal">0,00 €</span>
+      </div>
+      <div class="summary-row">
+        <span>Gastos de envío</span>
+        <span id="summary-shipping" style="color:#27ae60">GRATIS</span>
+      </div>
+      <div class="summary-total">
+        <span>Total</span>
+        <span id="summary-total">0,00 €</span>
+      </div>
+
+      <div class="summary-note">
+        <i class="fa-solid fa-truck-fast" style="color:#27ae60"></i>
+        Envío GRATIS en pedidos superiores a 19€
+      </div>
+
+      <button class="btn-checkout" onclick="procederCheckout()">
+        <i class="fa-solid fa-lock"></i>
+        Confirmar pedido
+      </button>
+      <a href="index.html" class="btn-continue">
+        ← Seguir comprando
+      </a>
+
+      <div class="payment-icons">
+        <i class="fa-brands fa-cc-visa" title="Visa"></i>
+        <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+        <i class="fa-brands fa-paypal" title="PayPal"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cupon descuento -->
+  <div id="coupon-section" style="display:none; margin-top:20px">
+    <div class="coupon-wrap">
+      <input type="text" id="coupon-input" placeholder="Código de descuento">
+      <button onclick="aplicarCupon()">Aplicar</button>
+    </div>
+    <div id="coupon-msg"></div>
+  </div>
+
+  <!-- Modal confirmación pedido -->
+  <div id="order-modal" class="modal-overlay" style="display:none">
+    <div class="modal-box">
+      <div class="modal-icon"><i class="fa-solid fa-check-circle" style="color:#27ae60;font-size:50px"></i></div>
+      <h3>¡Pedido realizado con éxito!</h3>
+      <p>Gracias por tu compra. Recibirás un email de confirmación en breve.</p>
+      <p id="modal-order-num" style="font-weight:bold; color:#509fca"></p>
+      <button onclick="cerrarModal()" class="btn-primary">Continuar comprando</button>
+    </div>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <p>© Agapea Factory S.A. 2002 - 2026. Reservados todos los derechos</p>
+        <ul>
+          <li><a href="#">Aviso Legal</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<div id="toast-container"></div>
+</body>
+</html>
